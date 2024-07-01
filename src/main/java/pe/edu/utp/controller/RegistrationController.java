@@ -21,16 +21,11 @@ public class RegistrationController {
 
     @GetMapping("/status/{dni}")
     public Optional<Registration> getRegistrationStatusByDni(@PathVariable String dni) {
-        return registrationServiceImpl.findByIdRegistration(Long.valueOf(dni));
+        return registrationServiceImpl.getRegistrationStatus(Long.valueOf(dni));
     }
 
     @PutMapping("/update/{id}")
     public void updateRegistration(@PathVariable Long id, @RequestBody Registration registration) {
         registrationServiceImpl.updateRegistration(id, registration);
-    }
-
-    @PutMapping("/changeStatus/{id}")
-    public void changeRegistrationStatus(@PathVariable Long id, @RequestParam String status) {
-        registrationServiceImpl.changeRegistrationStatus(id, status);
     }
 }

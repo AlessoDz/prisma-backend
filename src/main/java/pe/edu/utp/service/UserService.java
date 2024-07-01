@@ -13,4 +13,5 @@ public interface UserService {
     Applicant createApplicantForUser(User user);
 
     Registration createRegistrationForUser(User user);
+
 }

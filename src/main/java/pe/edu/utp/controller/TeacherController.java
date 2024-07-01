@@ -17,11 +17,7 @@ public class TeacherController {
     @Autowired
     private TeacherServiceImpl teacherServiceImpl;
 
-    @PostMapping("/save")
-    public ResponseEntity<Teacher> createTeacher(@RequestBody Teacher teacher) {
-        Teacher newTeacher = teacherServiceImpl.addTeacher(teacher);
-        return ResponseEntity.ok(newTeacher);
-    }
+
 
     @GetMapping("/all")
     public ResponseEntity<List<Teacher>> getAllTeachers() {

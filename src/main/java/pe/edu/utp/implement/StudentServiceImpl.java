@@ -28,6 +28,7 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     private ApplicantRepository applicantRepository;
 
+
     @Override
     public Student addStudent(Student student) {
         User user = student.getUser();

@@ -56,4 +56,6 @@ public class UserServiceImpl implements UserService {
         registration.setStudyLevel("Inicial");
         return registrationRepository.save(registration);
     }
+
+
 }

@@ -1,11 +1,14 @@
 package pe.edu.utp.controller;
 
+import pe.edu.utp.implement.ActivityServiceImpl;
 import pe.edu.utp.implement.StudentServiceImpl;
-import pe.edu.utp.model.Student;
-import pe.edu.utp.model.User;
+import pe.edu.utp.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.utp.service.ActivityService;
+import pe.edu.utp.service.CourseService;
+import pe.edu.utp.service.QualificationService;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,16 +20,19 @@ public class StudentController {
     @Autowired
     private StudentServiceImpl studentServiceImpl;
 
+    @Autowired
+    private CourseService courseService;
+
+    @Autowired
+    private QualificationService qualificationService;
+
+    @Autowired
+    private ActivityService activityService;
+
     @PostMapping("/save")
     public ResponseEntity<Student> createdStudent(@RequestBody Student student) {
         Student newStudent = studentServiceImpl.addStudent(student);
         return ResponseEntity.ok(newStudent);
-    }
-
-    @GetMapping("/all")
-    public ResponseEntity<List<Student>> getAllStudents() {
-        List<Student> students = studentServiceImpl.getAllStudents();
-        return ResponseEntity.ok(students);
     }
 
     @GetMapping("/name/{name}")
@@ -48,5 +54,21 @@ public class StudentController {
     public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
         return ResponseEntity.ok(studentServiceImpl.updateStudent(id, student));
     }
+
+    @GetMapping("/courses")
+    public List<Course> getCourses() {
+        return courseService.getAllCourses();
+    }
+
+    @GetMapping("/qualifications")
+    public List<Qualification> getQualifications(@RequestParam Long studentId) {
+        return qualificationService.getQualificationsByStudentId(studentId);
+    }
+
+    @GetMapping("/activities")
+    public List<Activity> getActivities(@RequestParam Long studentId) {
+        return activityService.getActivitiesByStudentId(studentId);
+    }
+
 
 }

@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface RegistrationRepository extends JpaRepository<Registration, Long> {
     Optional<Registration> findByIdRegistration(Long idRegistration);
+
 }

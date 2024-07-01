@@ -49,7 +49,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         }
     }
     @Override
-    public Optional<Registration> findByIdRegistration(Long idRegistration) {
+    public Optional<Registration> getRegistrationStatus(Long idRegistration) {
         return registrationRepository.findByIdRegistration(idRegistration);
     }
 
