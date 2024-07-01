@@ -38,6 +38,12 @@ CREATE TABLE `admin` (
 --
 -- Dumping data for table `admin`
 --
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `applicant`
 --
@@ -318,7 +324,6 @@ CREATE TABLE `student` (
 
 LOCK TABLES `student` WRITE;
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES ('E240000001',NULL,4,'12345',_binary '','student.jpg','B','Mañana','Primaria',20);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,7 +403,7 @@ CREATE TABLE `user` (
                         `phone` varchar(255) DEFAULT NULL,
                         `type` varchar(255) DEFAULT NULL,
                         PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
