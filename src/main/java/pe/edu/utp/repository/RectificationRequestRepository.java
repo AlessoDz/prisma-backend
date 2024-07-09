@@ -5,6 +5,6 @@ import pe.edu.utp.model.RectificationRequest;
 
 import java.util.List;
 
-public interface RectificationRequestRepository extends JpaRepository<RectificationRequest, Long> {
-    List<RectificationRequest> findByStudentId(Long studentId);
+public interface RectificationRequestRepository extends JpaRepository<RectificationRequest, String> {
+    List<RectificationRequest> findByStudentId(String idStudent);
 }

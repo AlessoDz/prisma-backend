@@ -60,9 +60,9 @@ public class StudentController {
         return courseService.getAllCourses();
     }
 
-    @GetMapping("/qualifications")
-    public List<Qualification> getQualifications(@RequestParam Long studentId) {
-        return qualificationService.getQualificationsByStudentId(studentId);
+    @GetMapping("/id/qualifications")
+    public List<Qualification> getQualifications(@RequestParam String idStudent) {
+        return qualificationService.getQualificationsByStudentId(idStudent);
     }
 
     @GetMapping("/activities")

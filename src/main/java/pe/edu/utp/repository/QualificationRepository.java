@@ -1,9 +1,14 @@
 package pe.edu.utp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 import pe.edu.utp.model.Qualification;
+
 import java.util.List;
 
+@Repository
 public interface QualificationRepository extends JpaRepository<Qualification, Long> {
-    List<Qualification> findByStudentId(Long studentId);
+    @Query(value = "CALL sp_find_student_by_id(:id)", nativeQuery = true)
+    List <Qualification> findQualificationsByStudentId(String id);
 }

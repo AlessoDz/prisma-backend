@@ -1,27 +1,31 @@
 package pe.edu.utp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class RectificationRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRectificationRequest;
-    private Long studentId;
-    private Long gradeId;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_qualification")
+    private Qualification qualification;
+
     private String reason;
     private String status; // e.g., "PENDING", "APPROVED", "DENIED"
 
     public RectificationRequest() {
     }
 
-    public RectificationRequest(Long idRectificationRequest, Long studentId, Long gradeId, String reason, String status) {
+    public RectificationRequest(Long idRectificationRequest, Student student, Qualification qualification, String reason, String status) {
         this.idRectificationRequest = idRectificationRequest;
-        this.studentId = studentId;
-        this.gradeId = gradeId;
+        this.student = student;
+        this.qualification = qualification;
         this.reason = reason;
         this.status = status;
     }
@@ -30,24 +34,24 @@ public class RectificationRequest {
         return idRectificationRequest;
     }
 
-    public void setIdRectificationRequest(Long id) {
-        this.idRectificationRequest = id;
+    public void setIdRectificationRequest(Long idRectificationRequest) {
+        this.idRectificationRequest = idRectificationRequest;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public Long getGradeId() {
-        return gradeId;
+    public Qualification getQualification() {
+        return qualification;
     }
 
-    public void setGradeId(Long gradeId) {
-        this.gradeId = gradeId;
+    public void setQualification(Qualification qualification) {
+        this.qualification = qualification;
     }
 
     public String getReason() {
