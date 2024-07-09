@@ -15,8 +15,8 @@ public class RectificationRequestServiceImpl implements RectificationRequestServ
     private RectificationRequestRepository rectificationRequestRepository;
 
     @Override
-    public List<RectificationRequest> getRectificationRequestsByStudentId(Long studentId) {
-        return rectificationRequestRepository.findByStudentId(studentId);
+    public List<RectificationRequest> getRectificationRequestsByStudentId(String id) {
+        return rectificationRequestRepository.findByStudentId(id);
     }
 
     @Override
