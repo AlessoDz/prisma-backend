@@ -66,8 +66,8 @@ public class StudentController {
     }
 
     @GetMapping("/activities")
-    public List<Activity> getActivities(@RequestParam Long studentId) {
-        return activityService.getActivitiesByStudentId(studentId);
+    public List<Activity> getActivities(@RequestParam String idStudent) {
+        return activityService.getActivitiesByStudentId(idStudent);
     }
 
 

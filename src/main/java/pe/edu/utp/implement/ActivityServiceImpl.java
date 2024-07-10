@@ -14,8 +14,8 @@ public class ActivityServiceImpl implements ActivityService {
     private ActivityRepository activityRepository;
 
     @Override
-    public List<Activity> getActivitiesByStudentId(Long studentId) {
-        return activityRepository.findByStudentId(studentId);
+    public List<Activity> getActivitiesByStudentId(String idStudent) {
+        return activityRepository.findActivitiesByStudentId(idStudent);
     }
 }
 

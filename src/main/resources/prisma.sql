@@ -36,15 +36,6 @@ CREATE TABLE `admin` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `admin`
---
-
-LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `applicant`
 --
 
@@ -59,15 +50,6 @@ CREATE TABLE `applicant` (
                              CONSTRAINT `FKmn0pw9ch0kalw4qs306gux9uy` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `applicant`
---
-
-LOCK TABLES `applicant` WRITE;
-/*!40000 ALTER TABLE `applicant` DISABLE KEYS */;
-/*!40000 ALTER TABLE `applicant` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `class`
@@ -95,15 +77,6 @@ CREATE TABLE `class` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `class`
---
-
-LOCK TABLES `class` WRITE;
-/*!40000 ALTER TABLE `class` DISABLE KEYS */;
-/*!40000 ALTER TABLE `class` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `classroom`
 --
 
@@ -118,15 +91,6 @@ CREATE TABLE `classroom` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `classroom`
---
-
-LOCK TABLES `classroom` WRITE;
-/*!40000 ALTER TABLE `classroom` DISABLE KEYS */;
-/*!40000 ALTER TABLE `classroom` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `course`
 --
 
@@ -139,15 +103,6 @@ CREATE TABLE `course` (
                           PRIMARY KEY (`id_course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `course`
---
-
-LOCK TABLES `course` WRITE;
-/*!40000 ALTER TABLE `course` DISABLE KEYS */;
-/*!40000 ALTER TABLE `course` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `message`
@@ -174,15 +129,6 @@ CREATE TABLE `message` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `message`
---
-
-LOCK TABLES `message` WRITE;
-/*!40000 ALTER TABLE `message` DISABLE KEYS */;
-/*!40000 ALTER TABLE `message` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `notification`
 --
 
@@ -203,13 +149,25 @@ CREATE TABLE `notification` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `notification`
+-- Table structure for table `activity`
 --
 
-LOCK TABLES `notification` WRITE;
-/*!40000 ALTER TABLE `notification` DISABLE KEYS */;
-/*!40000 ALTER TABLE `notification` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `activity`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `activity` (
+                            `id_activity` bigint NOT NULL AUTO_INCREMENT,
+                            `title` varchar(255) NOT NULL,
+                            `description` text,
+                            `date` datetime(6) NOT NULL,
+                            `id_teacher` varchar(10) DEFAULT NULL,
+                            `id_student` varchar(10) DEFAULT NULL,
+                            PRIMARY KEY (`id_activity`),
+                            KEY `FK_activity_teacher` (`id_teacher`),
+                            KEY `FK_activity_student` (`id_student`),
+                            CONSTRAINT `FK_activity_teacher` FOREIGN KEY (`id_teacher`) REFERENCES `teacher` (`id_teacher`),
+                            CONSTRAINT `FK_activity_student` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Table structure for table `qualification`
@@ -236,15 +194,6 @@ CREATE TABLE `qualification` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `qualification`
---
-
-LOCK TABLES `qualification` WRITE;
-/*!40000 ALTER TABLE `qualification` DISABLE KEYS */;
-/*!40000 ALTER TABLE `qualification` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `registration`
 --
 
@@ -263,13 +212,22 @@ CREATE TABLE `registration` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `registration`
+-- Table structure for table `rectification_request`
 --
 
-LOCK TABLES `registration` WRITE;
-/*!40000 ALTER TABLE `registration` DISABLE KEYS */;
-/*!40000 ALTER TABLE `registration` ENABLE KEYS */;
-UNLOCK TABLES;
+DROP TABLE IF EXISTS `rectification_request`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rectification_request` (
+                                `id_rectification_request` bigint NOT NULL AUTO_INCREMENT,
+                                `rectification_request_date` datetime(6) DEFAULT NULL,
+                                `rectification_request_status` varchar(255) DEFAULT NULL,
+                                `id_student` bigint DEFAULT NULL,
+                                PRIMARY KEY (`id_rectification_request`),
+                                KEY `FKfasafxc68safnsfnnasfasfasfsfa` (`id_student`),
+                                CONSTRAINT `FKfa8d7ap6efm32cn7kh5nu7gtk` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Table structure for table `speciality`
@@ -284,15 +242,6 @@ CREATE TABLE `speciality` (
                               PRIMARY KEY (`id_speciality`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `speciality`
---
-
-LOCK TABLES `speciality` WRITE;
-/*!40000 ALTER TABLE `speciality` DISABLE KEYS */;
-/*!40000 ALTER TABLE `speciality` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `student`
@@ -319,15 +268,6 @@ CREATE TABLE `student` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `student`
---
-
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `student_class_assignment`
 --
 
@@ -345,15 +285,6 @@ CREATE TABLE `student_class_assignment` (
                                             CONSTRAINT `FKomft8if286nf1v5daapt5isqq` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `student_class_assignment`
---
-
-LOCK TABLES `student_class_assignment` WRITE;
-/*!40000 ALTER TABLE `student_class_assignment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `student_class_assignment` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `teacher`
@@ -377,15 +308,6 @@ CREATE TABLE `teacher` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `teacher`
---
-
-LOCK TABLES `teacher` WRITE;
-/*!40000 ALTER TABLE `teacher` DISABLE KEYS */;
-/*!40000 ALTER TABLE `teacher` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `user`
 --
 
@@ -405,13 +327,6 @@ CREATE TABLE `user` (
                         PRIMARY KEY (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
---
--- Dumping events for database 'prisma'
---
 
 --
 -- Dumping routines for database 'prisma'
@@ -650,6 +565,8 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 DELIMITER ;;
+DELIMITER //
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_find_user_by_email`(
     IN p_email VARCHAR(255)
 )
@@ -657,6 +574,118 @@ BEGIN
     SELECT * FROM user WHERE email = p_email;
 END ;;
 DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_find_qualifications_by_student_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DELIMITER ;;
+DELIMITER //
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_find_qualifications_by_student_id`(
+    IN p_id VARCHAR(10)
+)
+BEGIN
+    SELECT * FROM qualification WHERE id_student = p_id;
+END;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_find_rectification_requests_by_student_id` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DELIMITER ;;
+DELIMITER //
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_find_rectification_requests_by_student_id`(
+    IN p_id VARCHAR(10))
+BEGIN
+    SELECT * FROM rectification_request WHERE id_student = p_id;
+END //
+
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_get_activities_by_teacher` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DELIMITER ;;
+DELIMITER //
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_activities_by_teacher`(
+    IN p_id_teacher varchar(10))
+BEGIN
+    SELECT
+        a.id_activity,
+        a.title,
+        a.description,
+        a.date
+    FROM
+        activity a
+    WHERE
+        a.id_teacher = p_id_teacher;
+END //
+
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_get_activities_by_student` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+DELIMITER ;;
+DELIMITER //
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_activities_by_student`(
+    IN p_id_student varchar(10))
+BEGIN
+    SELECT
+        a.id_activity,
+        a.title,
+        a.description,
+        a.date
+    FROM
+        activity a
+    WHERE
+        a.id_student = p_id_student;
+END //
+
+
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;

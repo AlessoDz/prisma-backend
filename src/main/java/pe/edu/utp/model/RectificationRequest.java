@@ -3,6 +3,7 @@ package pe.edu.utp.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "rectification_request")
 public class RectificationRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

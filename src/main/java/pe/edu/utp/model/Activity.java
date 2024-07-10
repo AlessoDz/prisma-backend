@@ -1,70 +1,77 @@
 package pe.edu.utp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-import java.time.LocalDateTime;
+import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
+@Table(name = "activity")
 public class Activity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long studentId;
-    private String description;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Long idActivity;
 
-    public Activity() {
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student")
+    private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "id_teacher")
+    private Teacher teacher;
+
+    public Activity() {}
+
+    public Activity(String name, Date date, Student student, Teacher teacher) {
+        this.name = name;
+        this.date = date;
+        this.student = student;
+        this.teacher = teacher;
     }
 
-    public Activity(Long id, Long studentId, String description, LocalDateTime startTime, LocalDateTime endTime) {
-        this.id = id;
-        this.studentId = studentId;
-        this.description = description;
-        this.startTime = startTime;
-        this.endTime = endTime;
+    // Getters y setters
+    public Long getIdActivity() {
+        return idActivity;
     }
 
-    public Long getId() {
-        return id;
+    public void setIdActivity(Long id) {
+        this.idActivity = id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
+    public Date getDate() {
+        return date;
     }
 
-    public String getDescription() {
-        return description;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public Student getStudent() {
+        return student;
     }
 
-    public LocalDateTime getStartTime() {
-        return startTime;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public void setStartTime(LocalDateTime startTime) {
-        this.startTime = startTime;
+    public Teacher getTeacher() {
+        return teacher;
     }
 
-    public LocalDateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 }

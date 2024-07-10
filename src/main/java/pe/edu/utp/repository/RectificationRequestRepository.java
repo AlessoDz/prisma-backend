@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RectificationRequestRepository extends JpaRepository<RectificationRequest, String> {
     @Query(value = "CALL sp_find_student_by_id(:id)", nativeQuery = true)
-    List<RectificationRequest> findByStudentId(String id);
+    List<RectificationRequest> findRectificationRequestByStudentId(String id);
 }

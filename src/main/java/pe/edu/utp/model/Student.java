@@ -42,9 +42,12 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Qualification> qualifications;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Activity> activities;
+
     public Student() { }
 
-    public Student(String idStudent, User user, String password, String profile, Long grade, String section, String studyLevel, String shift, Date entryDate, boolean paymentStatus, List<StudentClass> classAssignments, List<Qualification> qualifications) {
+    public Student(String idStudent, User user, String password, String profile, Long grade, String section, String studyLevel, String shift, Date entryDate, boolean paymentStatus, List<StudentClass> classAssignments, List<Qualification> qualifications, List<Activity> activities) {
         this.idStudent = idStudent;
         this.user = user;
         this.password = password;
@@ -57,54 +60,110 @@ public class Student {
         this.paymentStatus = paymentStatus;
         this.classAssignments = classAssignments;
         this.qualifications = qualifications;
+        this.activities = activities;
     }
 
-    public String getIdStudent() { return idStudent; }
+    public String getIdStudent() {
+        return idStudent;
+    }
 
-    public void setIdStudent(String idStudent) { this.idStudent = idStudent; }
+    public void setIdStudent(String idStudent) {
+        this.idStudent = idStudent;
+    }
 
-    public User getUser() { return user; }
+    public User getUser() {
+        return user;
+    }
 
-    public void setUser(User user) { this.user = user; }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public String getProfile() { return profile; }
+    public String getProfile() {
+        return profile;
+    }
 
-    public void setProfile(String profile) { this.profile = profile; }
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
 
-    public Long getGrade() { return grade; }
+    public Long getGrade() {
+        return grade;
+    }
 
-    public void setGrade(Long grade) { this.grade = grade; }
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
 
-    public String getSection() { return section; }
+    public String getSection() {
+        return section;
+    }
 
-    public void setSection(String section) { this.section = section; }
+    public void setSection(String section) {
+        this.section = section;
+    }
 
-    public String getStudyLevel() { return studyLevel; }
+    public String getStudyLevel() {
+        return studyLevel;
+    }
 
-    public void setStudyLevel(String studyLevel) { this.studyLevel = studyLevel; }
+    public void setStudyLevel(String studyLevel) {
+        this.studyLevel = studyLevel;
+    }
 
-    public String getShift() { return shift; }
+    public String getShift() {
+        return shift;
+    }
 
-    public void setShift(String shift) { this.shift = shift; }
+    public void setShift(String shift) {
+        this.shift = shift;
+    }
 
-    public Date getEntryDate() { return entryDate; }
+    public Date getEntryDate() {
+        return entryDate;
+    }
 
-    public void setEntryDate(Date entryDate) { this.entryDate = entryDate; }
+    public void setEntryDate(Date entryDate) {
+        this.entryDate = entryDate;
+    }
 
-    public boolean isPaymentStatus() { return paymentStatus; }
+    public boolean isPaymentStatus() {
+        return paymentStatus;
+    }
 
-    public void setPaymentStatus(boolean paymentStatus) { this.paymentStatus = paymentStatus; }
+    public void setPaymentStatus(boolean paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
 
-    public List<StudentClass> getClassAssignments() { return classAssignments; }
+    public List<StudentClass> getClassAssignments() {
+        return classAssignments;
+    }
 
-    public void setClassAssignments(List<StudentClass> classAssignments) { this.classAssignments = classAssignments; }
+    public void setClassAssignments(List<StudentClass> classAssignments) {
+        this.classAssignments = classAssignments;
+    }
 
-    public List<Qualification> getQualifications() { return qualifications; }
+    public List<Qualification> getQualifications() {
+        return qualifications;
+    }
 
-    public void setQualifications(List<Qualification> qualifications) { this.qualifications = qualifications; }
+    public void setQualifications(List<Qualification> qualifications) {
+        this.qualifications = qualifications;
+    }
 
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
 }
