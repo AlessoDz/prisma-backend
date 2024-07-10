@@ -222,10 +222,10 @@ CREATE TABLE `rectification_request` (
                                 `id_rectification_request` bigint NOT NULL AUTO_INCREMENT,
                                 `rectification_request_date` datetime(6) DEFAULT NULL,
                                 `rectification_request_status` varchar(255) DEFAULT NULL,
-                                `id_student` bigint DEFAULT NULL,
+                                `id_student` varchar(10) DEFAULT NULL,
                                 PRIMARY KEY (`id_rectification_request`),
                                 KEY `FKfasafxc68safnsfnnasfasfasfsfa` (`id_student`),
-                                CONSTRAINT `FKfa8d7ap6efm32cn7kh5nu7gtk` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
+                                CONSTRAINT `FKfasafxc68safnsfnnasfasfasfsfa` FOREIGN KEY (`id_student`) REFERENCES `student` (`id_student`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -482,7 +482,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_find_teacher_by_full_name`(IN name VARCHAR(255))
 BEGIN
     SET @namePattern = CONCAT('%', name, '%');
-    SELECT s.*
+    SELECT t.*
     FROM teacher t
     WHERE EXISTS (
         SELECT 1
@@ -491,6 +491,7 @@ BEGIN
           AND (u.name LIKE @namePattern OR u.last_name LIKE @namePattern)
     );
 END ;;
+
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
